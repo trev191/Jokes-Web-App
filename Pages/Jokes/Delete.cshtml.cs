@@ -12,9 +12,9 @@ namespace JokesWebApp.Pages.Jokes
 {
     public class DeleteModel : PageModel
     {
-        private readonly JokesWebApp.Data.JokesWebAppContext _context;
+        private readonly JokesWebApp.Data.ApplicationDbContext _context;
 
-        public DeleteModel(JokesWebApp.Data.JokesWebAppContext context)
+        public DeleteModel(JokesWebApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

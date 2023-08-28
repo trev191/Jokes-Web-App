@@ -1,6 +1,7 @@
 using JokesWebApp.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace JokesWebApp
 {
@@ -18,6 +19,8 @@ namespace JokesWebApp
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("JokesWebAppContext") ?? throw new InvalidOperationException("Connection string 'JokesWebAppContext' not found.")));
             builder.Services.AddRazorPages();
 
             var app = builder.Build();

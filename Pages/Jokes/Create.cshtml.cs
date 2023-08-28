@@ -12,9 +12,9 @@ namespace JokesWebApp.Pages.Jokes
 {
     public class CreateModel : PageModel
     {
-        private readonly JokesWebApp.Data.JokesWebAppContext _context;
+        private readonly JokesWebApp.Data.ApplicationDbContext _context;
 
-        public CreateModel(JokesWebApp.Data.JokesWebAppContext context)
+        public CreateModel(JokesWebApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

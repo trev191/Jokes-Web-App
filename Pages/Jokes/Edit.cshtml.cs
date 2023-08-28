@@ -13,9 +13,9 @@ namespace JokesWebApp.Pages.Jokes
 {
     public class EditModel : PageModel
     {
-        private readonly JokesWebApp.Data.JokesWebAppContext _context;
+        private readonly JokesWebApp.Data.ApplicationDbContext _context;
 
-        public EditModel(JokesWebApp.Data.JokesWebAppContext context)
+        public EditModel(JokesWebApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }
