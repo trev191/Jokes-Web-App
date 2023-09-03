@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using JokesWebApp.Data;
 using JokesWebApp.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace JokesWebApp.Pages.Jokes
 {
@@ -21,12 +22,20 @@ namespace JokesWebApp.Pages.Jokes
 
         public IList<Joke> Joke { get;set; } = default!;
 
+        // For allowing search functionality
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+        public SelectList? Jokes { get; set; }
         public async Task OnGetAsync()
         {
-            if (_context.Joke != null)
+            var jokes = from j in _context.Joke
+                        select j;
+            if (!string.IsNullOrEmpty(SearchString))
             {
-                Joke = await _context.Joke.ToListAsync();
+                jokes = jokes.Where(s => s.JokeQuestion.Contains(SearchString));
             }
+
+            Joke = await jokes.ToListAsync();
         }
     }
 }
